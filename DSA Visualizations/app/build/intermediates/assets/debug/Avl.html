@@ -1,0 +1,30 @@
+<br><br>
+<h2>AVL Trees</h2>
+<p>What if the input to binary search tree comes in sorted (ascending or descending) manner? It will then look like this &minus;</p>   
+<img src="unbalanced_bst.jpg" alt="Unbalanced BST" /> 
+<p>It is observed that BST's worst-case performance closes to linear search algorithms, that is &Omicron;(n). In real time data we cannot predict data pattern and their frequencies. So a need arises to balance out existing BST.</p>
+<p>Named after their inventor <b><i>Adelson</i></b>, <b><i>Velski</i></b> &amp; <b><i>Landis</i></b>, <b>AVL</b> trees are height balancing binary search tree. AVL tree checks the height of left and right sub-trees and assures that the difference is not more than 1. This difference is called <b><i>Balance Factor</i></b>.</p>
+<p>Here we see that the first tree is balanced and next two trees are not balanced &minus;</p>
+<img src="unbalanced_avl_trees.jpg" alt="Unbalanced AVL Trees" /> 
+<p>In second tree, the left subtree of <b>C</b> has height 2 and right subtree has height 0, so the difference is 2. In third tree, the right subtree of <b>A</b> has height 2 and left is missing, so it is 0, and the difference is 2 again. AVL tree permits difference (balance factor) to be only 1.</p>
+<pre class="result notranslate">
+<i><b>BalanceFactor</b></i> = height(left-sutree) &minus; height(right-sutree)
+</pre>
+<p>If the difference in the height of left and right sub-trees is more than 1, the tree is balanced using some rotation techniques.</p>
+<h2>AVL Rotations</h2>
+<p>To make itself balanced, an AVL tree may perform four kinds of rotations &minus;</p>
+<ul class="list">
+<li>Left rotation</li>
+<li>Right rotation</li>
+<li>Left-Right rotation</li>
+<li>Right-Left rotation</li>
+</ul>
+<p>First two rotations are single rotations and next two rotations are double rotations. Two have an unbalanced tree we at least need a tree of height 2. With this simple tree, let's understand them one by one.</p>
+<h2>Left Rotation</h2>
+<p>If a tree become unbalanced, when a node is inserted into the right subtree of right subtree, then we perform single left rotation &minus;</p>
+<img src="avl_left_rotation.jpg" alt="Left Rotation" /> 
+<p>In our example, node <b>A</b> has become unbalanced as a node is inserted in right subtree of A's right subtree. We perform left rotation by making <b>A</b> left-subtree of B.</p>
+<h2>Right Rotation</h2>
+<p>AVL tree may become unbalanced if a node is inserted in the left subtree of left subtree. The tree then needs a right rotation.</p>
+<img src="avl_right_rotation.jpg" alt="Right Rotation" /> 
+<p>As depicted, the unbalanced node becomes right child of its left child by performing a right rotation.</p>

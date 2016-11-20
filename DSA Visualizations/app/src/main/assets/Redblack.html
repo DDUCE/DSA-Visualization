@@ -1,0 +1,107 @@
+<br><br>
+<h2>What is Red-black Tree</h2>
+<p>Red-black trees are an evolution of binary search trees that aim to keep
+    the tree balanced without affecting the complexity of the primitive
+    operations. This is done by coloring each node in the tree with either red
+    or black and preserving a set of properties that guarantee that the deepest
+    path in the tree is not longer than twice the shortest one.</p>
+
+    <p>A red-black tree is a binary search tree with the following
+    properties:</p>
+
+    <ol>
+        <li>Every node is colored with either red or black.</li>
+
+        <li>All leaf (nil) nodes are colored with black; if a node’s child is
+        missing then we will assume that it has a nil child in that place and
+        this nil child is always colored black.</li>
+
+        <li>Both children of a red node must be black nodes.</li>
+
+        <li>Every path from a node n to a descendent leaf has the same number
+        of black nodes (not counting node n). We call this number the
+        <strong>black height</strong> of n, which is denoted by bh(n).</li>
+    </ol>
+
+    <p>Figure 5 shows an example of a red-black tree.</p>
+
+    <div style="text-align: center"><img alt="" border="0" src=
+    "rbtrees.jpg" style=
+    "margin: 10px;"></div>
+
+    <p>Using these properties, we can show in two steps that a red-black tree
+    which contains n nodes has a height of O(log n), thus all primitive
+    operations on the tree will be of O(log n) since their order is a function
+    of tree height.</p>
+
+    <ol>
+        <li>First, notice that for a red-black tree with height h, bh(root) is
+        at least h/2 by property 3 above (as each red node strictly requires
+        black children).</li>
+
+        <li>The next step is to use the following lemma:
+
+            <ul>
+                <li>Lemma: A subtree rooted at node v has at least 2^bh(v) – 1
+                internal nodes</li>
+
+                <li>Proof by induction: The basis is when h(v) = 0, which means
+                that v is a leaf node and therefore bh(v) = 0 and the subtree
+                rooted at node v has 2^bh(v)-1 = 2^0-1 = 1-1 = 0 nodes.</li>
+
+                <li>Inductive hypothesis: if node v1 with height x has
+                2^bh(v1)-1 internal nodes then node v2 with height x+1 has
+                2^bh(v2)-1</li>
+            </ul>
+        </li>
+    </ol>
+
+    <p>For any non-leaf node v (height &gt; 0) we can see that the black height
+    of any of its two children is at least equal to bh(v)-1 &#8212; if the child is
+    black, that is, otherwise it is equal to bh(v) . By applying the hypothesis
+    above we conclude that each child has at least 2^[bh(v)-1]-1 internal
+    nodes, accordingly node v has at least<br />
+    2^[bh(v)-1]-1 + 2^[bh(v)-1]-1 + 1 = 2^bh(v)-1<br />
+    internal nodes, which ends the proof.</p>
+
+    <p>By applying the lemma to the root node (with bh of at least h/2, as
+    shown above) we get<br />
+    n &gt;= 2^(h/2) – 1<br />
+    where n is the number of internal nodes of a red-black tree (the subtree
+    rooted at the root). Playing with the equation a little bit we get h &lt;=
+    2 log (n+1), which guarantees the logarithmic bound of red-black trees.</p>
+
+    <p><span class="bodySubtitle">Rotations</span></p>
+
+    <p>How does inserting or deleting nodes affect a red-black tree? To ensure
+    that its color scheme and properties don&#8217;t get thrown off, red-black trees
+    employ a key operation known as <strong>rotation</strong>. Rotation is a
+    binary operation, between a parent node and one of its children, that swaps
+    nodes and modifys their pointers while preserving the inorder traversal of
+    the tree (so that elements are still sorted).</p>
+
+    <p>There are two types of rotations: left rotation and right rotation. Left
+    rotation swaps the parent node with its right child, while right rotation
+    swaps the parent node with its left child. Here are the steps involved in
+    for left rotation (for right rotations just change &#8220;left&#8221; to &#8220;right&#8221;
+    below):</p>
+
+    <ul>
+        <li>Assume node x is the parent and node y is a non-leaf right
+        child.</li>
+
+        <li>Let y be the parent and x be its left child.</li>
+
+        <li>Let y’s left child be x’s right child.</li>
+    </ul>
+
+    <div style="text-align: center"><img alt="" border="0" src=
+    "rbtrees1.jpg" style=
+    "margin: 10px;"></div>
+
+    <p><span class="bodySubtitle">Operations on red-black tree (insertion,
+    deletion and retrieval)</span></p>
+
+    <p>Red-black tree operations are a modified version of BST operations, with
+    the modifications aiming to preserve the properties of red-black trees
+    while keeping the operations complexity a function of tree height.</p>

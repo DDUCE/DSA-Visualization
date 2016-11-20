@@ -1,0 +1,35 @@
+<h2>Selection Sorting</h2>
+<p>Selection sorting is conceptually the most simplest sorting algorithm. This algorithm first finds the smallest element in the array and exchanges it with the element in the first position, then find the second smallest element and exchange it with the element in the second position, and continues in this way until the entire array is sorted.</p>
+<hr/>
+<h4>How Selection Sorting Works</h4>
+<p class="center"><img src="selection-sort.png" alt="Selection Sorting in Data Structures"></p>
+<p>In the first pass, the smallest element found is 1, so it is placed at the first position, then leaving first element, smallest element is searched from the rest of the elements, 3 is the smallest, so it is then placed at the second position. Then we leave 1 nad 3, from the rest of the elements, we search for the smallest and put it at third position and keep doing this, until array is sorted.</p>
+<hr/>
+<h4>Sorting using Selection Sort Algorithm</h4>
+<pre class="cpp">void selectionSort(int a[], int size)
+{
+  int i, j, min, temp;
+  for(i=0; i < size-1; i++ )
+  {
+    min = i;   //setting min as i
+    for(j=i+1; j < size; j++)
+    {
+      if(a[j] < a[min])   //if element at j is less than element at min position
+      {
+       min = j;    //then set min as j
+      }
+    }
+   temp = a[i];
+   a[i] = a[min];
+   a[min] = temp;
+  }
+}
+</pre>
+<hr/>
+<h4>Complexity Analysis of Selection Sorting</h4>
+<pre class="none">
+<b>Worst Case Time Complexity :</b> O(n<sup>2</sup>)
+<b>Best Case Time Complexity :</b> O(n<sup>2</sup>)
+<b>Average Time Complexity :</b> O(n<sup>2</sup>)
+<b>Space Complexity : </b>O(1)
+</pre>

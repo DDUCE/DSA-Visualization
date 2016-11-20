@@ -1,0 +1,34 @@
+<br><br>
+<h2>What is B-Tree</h2>
+<p>Tree structures support various basic dynamic set operations including <i>Search</i>, <i>Predecessor</i>, <i>Successor</i>, <i>Minimum</i>, <i>Maximum</i>, <i>Insert</i>, and <i>Delete</i> in time proportional to the height of the tree.  Ideally, a tree will be balanced and the height will be <i>log n</i> where <i>n</i> is the number of nodes in the tree.  To ensure that the height of the tree is as small as possible and therefore provide the best running time, a balanced tree structure like a red-black tree, AVL tree, or b-tree must be used.</p>
+
+<p> When working with large sets of data, it is often not possible or desirable to maintain the entire structure in primary storage (RAM).  Instead, a relatively small portion of the data structure is maintained in primary storage, and additional data is read from secondary storage as needed.  Unfortunately, a magnetic disk, the most common form of secondary storage, is significantly slower than random access memory (RAM).  In fact, the system often spends more time retrieving data than actually processing data.</p>
+
+<p>B-trees are balanced trees that are optimized for situations when part or all of the tree must be maintained in secondary storage such as a magnetic disk.  Since disk accesses are expensive (time consuming) operations, a b-tree tries to minimize the number of disk accesses.  For example, a b-tree with a height of 2 and a branching factor of 1001 can store over one billion keys but requires at most two disk accesses to search for any node (Cormen 384).</p>    
+</p>
+
+<hr>
+
+<a name=structure><h2>The Structure of B-Trees</h2></a>
+<p>Unlike a binary-tree, each node of a b-tree may have a variable number of keys and children.  The keys are stored in non-decreasing order.  Each key has an associated child that is the root of a subtree containing all nodes with keys less than or equal to the key but greater than the preceeding key.  A node also has an additional rightmost child that is the root for a subtree containing all keys greater than any keys in the node.</p>
+
+<p>A b-tree has a minumum number of allowable children for each node known as the <i>minimization factor</i>.  If <i>t</i> is this <i>minimization factor</i>, every node must have at least <i>t - 1</i> keys.  Under certain circumstances, the root node is allowed to violate this property by having fewer than <i>t - 1</i> keys.  Every node may have at most <i>2t - 1</i> keys or, equivalently, <i>2t</i> children.</p>
+
+<p>Since each node tends to have a large branching factor (a large number of children), it is typically neccessary to traverse relatively few nodes before locating the desired key.  If access to each node requires a disk access, then a b-tree will minimize the number of disk accesses required.  The minimzation factor is usually chosen so that the total size of each node corresponds to a multiple of the block size of the underlying storage device.  This choice simplifies and optimizes disk access.  Consequently, a b-tree is an ideal data structure for situations where all data cannot reside in primary storage and accesses to secondary storage are comparatively expensive (or time consuming).</p>
+
+<h3>Height of B-Trees</h3>
+<p>For <i>n</i> greater than or equal to one, the height of an <i>n</i>-key b-tree T of height <i>h</i> with a minimum degree <i>t</i> greater than or equal to 2, 
+<br><center><img src="height.png"></center><br>
+For a proof of the above inequality, refer to Cormen, Leiserson, and Rivest pages 383-384.</p>
+
+<p>The worst case height is <i>O(log n)</i>.  Since the &quot;branchiness&quot; of a b-tree can be large compared to many other balanced tree structures, the base of the logarithm tends to be large; therefore, the number of nodes visited during a search tends to be smaller than required by other tree structures.  Although this does not affect the asymptotic worst case height, b-trees tend to have smaller heights than other trees with the same asymptotic height.</p>
+
+
+<hr>
+
+<a name=operations><h2>Operations on B-Trees</h2></a>
+
+<p>The algorithms for the <i>search</i>, <i>create</i>, and <i>insert</i> operations are shown below.  Note that these algorithms are single pass; in other words, they do not traverse back up the tree.  Since b-trees strive to minimize disk accesses and the nodes are usually stored on disk, this single-pass approach will reduce the number of node visits and thus the number of disk accesses.  Simpler double-pass approaches that move back up the tree to fix violations are possible.</p>  
+<p>Since all nodes are assumed to be stored in secondary storage (disk) rather than primary storage (memory), all references to a given node be be preceeded by a read operation denoted by <i>Disk-Read</i>.  Similarly, once a node is modified and it is no longer needed, it must be written out to secondary storage with a write operation denoted by <i>Disk-Write</i>.  The algorithms below assume that all nodes referenced in parameters have already had a corresponding <i>Disk-Read</i> operation.  New nodes are created and assigned storage with the <i>Allocate-Node</i> call.   The implementation details of the <i>Disk-Read</i>, <i>Disk-Write</i>, and <i>Allocate-Node</i> functions are operating system and implementation dependent.</p><br>
+<h3>Sample B-Tree</h3>
+<img src="btree.png"><br>

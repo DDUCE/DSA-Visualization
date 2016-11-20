@@ -1,0 +1,81 @@
+<br><br><h2>Insertion Sorting</h2>
+<p>It is a simple Sorting algorithm which sorts the array by shifting elements one by one. Following are some of the important characteristics of Insertion Sort.</p>
+<ol class="content">
+<li>It has one of the simplest implementation</li>
+<li>It is efficient for smaller data sets, but very inefficient for larger lists.</li>
+<li>Insertion Sort is adaptive, that means it reduces its total number of steps if given a partially sorted list, hence it increases its efficiency.</li>
+<li>It is better than Selection Sort and Bubble Sort algorithms.</li>
+<li>Its space complexity is less, like Bubble Sorting, inerstion sort also requires a single additional memory space.</li>
+<li>It is <b>Stable</b>, as it does not change the relative order of elements with equal keys</li>
+<p class="center"><img src="stable-unstable-sort-example.png" alt="Example for Stable sort"></p>
+</ol>
+<hr/>
+<h4>How Insertion Sorting Works</h4>
+<p class="center"><img src="insertion-sort.png" alt="Insertion SOrting in Data Structures."></p>
+<hr/>
+<h4>Sorting using Insertion Sort Algorithm</h4>
+<pre class="cpp">int a[6] = {5, 1, 6, 2, 4, 3};
+int i, j, key;
+for(i=1; i<6; i++)
+{
+  key = a[i];
+  j = i-1;
+  while(j>=0 && key < a[j])
+  {
+    a[j+1] = a[j];
+    j--;
+  }
+  a[j+1] = key;
+}
+</pre>
+<p>Now lets, understand the above simple insertion sort algorithm. We took an array with 6 integers. We took a variable <b>key</b>, in which we put each element of the array, in each pass, starting from the second element, that is <b>a[1]</b>.</p>
+<p>Then using the while loop, we iterate, until <b>j</b> becomes equal to zero or we find an element which is greater than <b>key</b>, and then we insert the key at that position.</p>
+<p>In the above array, first we pick 1 as key, we compare it with 5(element before 1), 1 is smaller than 5, we shift 1 before 5. Then we pick 6, and compare it with 5 and 1, no shifting this time. Then 2 becomes the key and is compared with, 6 and 5, and then 2 is placed after 1. And this goes on, until complete array gets sorted.</p>
+<hr/>
+<h4>Insertion Sorting in C++</h4>
+<pre class="cpp">
+#include &lt;stdlib.h&gt;
+#include &lt;iostream.h&gt;
+ 
+using namespace std;
+ 
+<i>//member functions declaration</i>
+void <b>insertionSort</b>(int arr[], int length);
+void <b>printArray</b>(int array[],int size);
+ 
+int <b>main</b>() {
+	int array[5]= {5,4,3,2,1};
+	<b>insertionSort</b>(<i>array</i>,5);
+	return 0;
+}
+ 
+void <b>insertionSort</b>(int arr[], int length) {
+	int i, j ,tmp;
+	for (i = 1; i < length; i++) {
+		j = i;
+ 		while (j > 0 && arr[j - 1] > arr[j]) {
+ 			tmp = arr[j];
+ 			arr[j] = arr[j - 1];
+ 			arr[j - 1] = tmp;
+ 			j--;
+ 		}
+	printArray(arr,5);
+	}
+}
+ 
+void <b>printArray</b>(int array[], int size){ 
+ 	cout<< "Sorting tha array using Insertion sort... ";
+ 	int j;
+	for (j=0; j < size;j++)
+ 		for (j=0; j < size;j++)
+ 			cout <<" "<< array[j];
+ 	cout << endl;
+}</pre>
+<hr/>
+<h4>Complexity Analysis of Insertion Sorting</h4>
+<pre class="none">
+<b>Worst Case Time Complexity :</b> O(n<sup>2</sup>)
+<b>Best Case Time Complexity :</b> O(n)
+<b>Average Time Complexity :</b> O(n<sup>2</sup>)
+<b>Space Complexity : </b>O(1)
+</pre>

@@ -1,0 +1,66 @@
+<br><br><h2>Quick Sort Algorithm</h2>
+<p>Quick Sort, as the name suggests, sorts any list very quickly. Quick sort is not stable search, but it is very fast and requires very less aditional space. It is based on the rule of <b>Divide and Conquer</b>(also called <i>partition-exchange sort</i>). This algorithm divides the list into three main parts :</p>
+<ol class="content">
+<li>Elements less than the Pivot element</li>
+<li>Pivot element</li>
+<li>Elements greater than the pivot element</li>
+</ol>
+<p>In the list of elements, mentioned in below example, we have taken <b>25</b> as pivot. So after the first pass, the list will be changed like this.</p>
+<p><code>6 8 17 14 <b>25</b> 63 37 52</code></p>
+<p>Hnece after the first pass, pivot will be set at its position, with all the elements smaller to it on its left and all the elements larger than it on the right. Now <code>6 8 17 14</code> and <code>63 37 52</code> are considered as two separate lists, and same logic is applied on them, and we keep doing this until the complete list is sorted.</p>
+<hr/>
+<h4>How Quick Sorting Works</h4>
+<p class="center"><img src="quick-sort.png" alt="Quick Sorting in Data Structures"></p>
+<hr/>
+<h4>Sorting using Quick Sort Algorithm</h4>
+<pre class="cpp">/*  a[] is the array, p is starting index, that is 0, 
+and r is the last index of array.  */
+
+void <b>quicksort</b>(int a[], int p, int r)    
+{
+  if(p < r)
+  {
+    int q;
+    q = partition(a, p, r);
+    quicksort(a, p, q);
+    quicksort(a, q+1, r);
+  }
+}
+
+int <b>partition</b>(int a[], int p, int r)
+{
+  int i, j, pivot, temp;
+  pivot = a[p];
+  i = p;
+  j = r;
+  while(1)
+  {
+   while(a[i] < pivot && a[i] != pivot)
+   i++;
+   while(a[j] > pivot && a[j] != pivot)
+   j--;
+   if(i < j)
+   {
+    temp = a[i];
+    a[i] = a[j];
+    a[j] = temp;
+   }
+   else
+   {
+    return j;
+   }
+  }
+}
+</pre>
+<hr/>
+<h4>Complexity Analysis of Quick Sort</h4>
+<pre class="none">
+<b>Worst Case Time Complexity :</b> O(n<sup>2</sup>)
+<b>Best Case Time Complexity :</b> O(n log n)
+<b>Average Time Complexity :</b> O(n log n)
+<b>Space Complexity : </b>O(n log n)
+</pre>
+<ul class="content">
+<li>Space required by quick sort is very less, only O(n log n) additional space is required.</li>
+<li>Quick sort is not a stable sorting technique, so it might change the occurence of two similar elements in the list while sorting.</li>
+</ul>

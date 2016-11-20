@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tipsandtricks.HelloCard"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="10" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <android:uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <android:uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <android:uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application android:label="@string/app_name" >
+        <activity
+            android:name="com.tipsandtricks.HelloCard.HelloCardActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tipsandtricks.HelloCard.HelloCardListActivity"
+            android:label="Data Structures" />
+        <activity android:name="com.tipsandtricks.HelloCard.Info" />
+        <activity android:name="com.tipsandtricks.HelloCard.info" />
+        <activity
+            android:name="com.tipsandtricks.HelloCard.MyAnimation"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.tipsandtricks.HelloCard.Quiz"
+            android:theme="@style/Theme.AppCompat.Light" />
+        <activity
+            android:name="com.tipsandtricks.HelloCard.Gif"
+            android:theme="@style/Theme.AppCompat.Light" />
+    </application>
+
+</manifest>

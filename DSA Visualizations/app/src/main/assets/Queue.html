@@ -1,0 +1,21 @@
+<br><br>
+<h2>Queue</h2>
+<p>Queue is an abstract data structure, somewhat similar to Stack. In contrast to Queue, queue is opened at both end. One end is always used to insert data (enqueue) and the other is used to remove data (dequeue). Queue follows First-In-First-Out methodology, i.e., the data item stored first will be accessed first.</p>
+<p>A real world example of queue can be a single-lane one-way road, where the vehicle enters first, exits first. More real-world example can be seen as queues at ticket windows &amp; bus-stops.</p>
+<h2>Queue Representation</h2>
+<p>As we now understand that in queue, we access both ends for different reasons, a diagram given below tries to explain queue representation as data structure &minus;</p>
+<img src="queue_diagram.jpg" alt="Queue Example" />
+<p>Same as Queue, queue can also be implemented using Array, Linked-list, Pointer and Structures. For the sake of simplicity we shall implement queue using one-dimensional array.</p>
+<h2>Basic Operations</h2>
+<p>Queue operations may involve initializing or defining the queue, utilizing it and then completing erasing it from memory. Here we shall try to understand basic operations associated with queues &minus;</p>
+<ul class="list">
+<li><p><b>enqueue()</b> &minus; add (store) an item to the queue.</p></li>
+<li><p><b>dequeue()</b> &minus; remove (access) an item from the queue.</p></li>
+</ul>
+<p>Few more functions are required to make above mentioned queue operation efficient. These are &minus;</p>
+<ul class="list">
+<li><p><b>peek()</b> &minus; get the element at front of the queue without removing it.</p></li>
+<li><p><b>isfull()</b> &minus; checks if queue is full.</p></li>
+<li><p><b>isempty()</b> &minus; checks if queue is empty.</p></li>
+</ul>
+<p>In queue, we always <b>dequeue</b> (or access) data, pointed by <b>front</b> pointer and while enqueing (or storing) data in queue we take help of <b>rear</b> pointer.</p>
